@@ -6,11 +6,10 @@ public:
         int l = 0,h = n,mid = 0;
         while(l<=h)
         {
-            mid = l + (h-l)/2;
-            if(v[mid] == 1)
-                l = mid + 1;
-            else
-                h = mid - 1;
+            // mid = l + (h-l)/2;
+            mid = (l+h)>>1;
+            if(v[mid] == 1) l = mid + 1;
+            else h = mid - 1;
         }
         return l+1;
     }
@@ -21,19 +20,15 @@ public:
         for(int i =0;i<n;i++)
         {
             int temp = sum(mat[i]);
-            // mp[temp] = i;
             mp.insert(pair<int,int>(temp,i));
         }
         vector<int> ans;
-        // for(int i = 0;i<k;i++)
-        //     ans.push_back()
         int r = 0;
         for(auto &i : mp)
         {
             r++;
-            ans.push_back(i.second);
-            if(r == k)
-                break;
+            if(r<=k)
+                ans.push_back(i.second);
         }
         return ans;
     }
